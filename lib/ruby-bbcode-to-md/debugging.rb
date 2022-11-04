@@ -21,7 +21,7 @@ module RubyBBCode
   # This module can be included in the BBTree and TagNode to give them debugging features
   module DebugBBTree
     # For Debugging/ visualization purposes.
-    # This can be used to render the #nodes array in a pretty manor, showing the hirarchy.
+    # This can be used to render the #nodes array in a pretty manor, showing the hierarchy.
     def to_v
       tree = self
       visual_string = ''
@@ -50,7 +50,7 @@ module RubyBBCode
       count
     end
 
-    # For BBTree, teh to_s method shows the count of the children plus a graphical
+    # For BBTree, the to_s method shows the count of the children plus a graphical
     # depiction of the tree, and the relation of the nodes.
     # For TagNodes, the root-most tag is displayed, and the children are counted.
     def to_s
