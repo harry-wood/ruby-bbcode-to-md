@@ -165,7 +165,7 @@ class RubyBbcodeTest < MiniTest::Unit::TestCase
 
   end
 
-  def test_mulit_tag
+  def test_multi_tag
     input1 = "[media]https://www.youtube.com/watch?v=cSohjlYQI2A[/media]"
     input2 = "[media]http://vimeo.com/46141955[/media]"
 

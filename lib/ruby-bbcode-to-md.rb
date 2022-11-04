@@ -27,7 +27,7 @@ module RubyBBCode
   # This method converts the given text (with BBCode tags) into a HTML representation
   # The escape_html parameter (default: true) escapes HTML tags that were present in the given text and therefore blocking (mallicious) HTML in the original text
   # The additional_tags parameter is used to add additional BBCode tags that should be accepted
-  # The method paramter determines whether the tags parameter needs to be used to blacklist (when set to :disable) or whitelist (when not set to :disable) the list of BBCode tags
+  # The method parameter determines whether the tags parameter needs to be used to blacklist (when set to :disable) or whitelist (when not set to :disable) the list of BBCode tags
   def self.to_html(text, escape_html = true, additional_tags = {}, method = :disable, *tags)
     text = text.clone
 
