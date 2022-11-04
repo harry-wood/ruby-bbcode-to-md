@@ -11,7 +11,20 @@ class FluxbbTest < MiniTest::Unit::TestCase
         :tag_param_tokens => [{:token => :alt_text, :prefix => ' alt="', :postfix => '"'}],
         :tag_param_description => 'The img bbcode takes alt text as a parameter'
       ),
+      :h => {
+        :html_open => "\n### ", :html_close => "\n",
+        :newlines => :to_br,
+        :description => 'Make a heading',
+        :example => '[h]My Heading[/h].'}
     }
+  end
+
+  def test_heading
+    assert_equal "\n### My Heading\n", "[h]My Heading[/h]".bbcode_to_md(false, fluxbb_tags)
+  end
+
+  def test_heading_on_two_lines
+    assert_equal "\n### My Heading<br>on two lines\n", "[h]My Heading\non two lines[/h]".bbcode_to_md(false, fluxbb_tags)
   end
 
   def test_image_with_alt_text
