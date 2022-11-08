@@ -10,7 +10,9 @@ module RubyBBCode
           children_html = node.has_children? ? node.children.to_html(tags) : nil
 
           if children_html
-            if node.definition[:paragraphs].nil? || node.definition[:paragraphs] == :to_br
+            if node.definition[:newlines] == :to_br
+              children_html.gsub!(/\n/, "<br>")
+            elsif node.definition[:paragraphs].nil? || node.definition[:paragraphs] == :to_br
               children_html.gsub!(/\n\s*\n/, "\n<br>")
             end
           end
