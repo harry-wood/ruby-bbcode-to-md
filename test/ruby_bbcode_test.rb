@@ -22,6 +22,10 @@ class RubyBbcodeTest < MiniTest::Unit::TestCase
     assert_equal "line 1\nline 2", "[u]line 1\nline 2[/u]".bbcode_to_md
   end
 
+  def test_s
+    assert_equal '~~simple~~', '[s]simple[/s]'.bbcode_to_md
+  end
+
   def test_size
     assert_equal '[size=32]32px Text[/size]', '[size=32]32px Text[/size]'.bbcode_to_md
   end
@@ -157,8 +161,8 @@ class RubyBbcodeTest < MiniTest::Unit::TestCase
     # TODO:  This stack level problem should be validated during the validations
   def test_stack_level_too_deep
     num = 2300  # increase this number if the test starts failing.  It's very near the tipping point
-    openers = "[s]hi i'm" * num
-    closers = "[/s]" * num
+    openers = "[x]hi i'm" * num
+    closers = "[/x]" * num
     assert_raises( RuntimeError ) do
       (openers+closers).bbcode_to_md
     end
