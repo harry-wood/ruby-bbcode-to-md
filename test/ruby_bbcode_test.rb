@@ -9,7 +9,7 @@ class RubyBbcodeTest < MiniTest::Unit::TestCase
 
   def test_strong
     assert_equal '**simple**', '[b]simple[/b]'.bbcode_to_md
-    assert_equal "**line 1\nline 2**", "**line 1\nline 2**".bbcode_to_md
+    assert_equal "**line 1\nline 2**", "[b]line 1\nline 2[/b]".bbcode_to_md
   end
 
   def test_em
