@@ -9,6 +9,12 @@ module RubyBBCode
           # let child node render:
           children_html = node.has_children? ? node.children.to_html(tags) : nil
 
+          if children_html
+            if node.definition[:paragraphs].nil? || node.definition[:paragraphs] == :to_br
+              children_html.gsub!(/\n\s*\n/, "\n<br>")
+            end
+          end
+
           t = HtmlTemplate.new node
 
           t.inlay_between_text!(children_html)

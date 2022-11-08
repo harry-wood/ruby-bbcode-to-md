@@ -17,6 +17,11 @@ class RubyBbcodeTest < MiniTest::Unit::TestCase
     assert_equal "*line 1\nline 2*", "[i]line 1\nline 2[/i]".bbcode_to_md
   end
 
+  def test_paragraph_breaking_up_markdown
+    assert_equal "**paragraph 1\n<br>paragraph 2**", "[b]paragraph 1\n\nparagraph 2[/b]".bbcode_to_md
+    assert_equal "*paragraph 1\n<br>paragraph 2*", "[i]paragraph 1\n\nparagraph 2[/i]".bbcode_to_md
+  end
+
   def test_u
     assert_equal 'simple', '[u]simple[/u]'.bbcode_to_md
     assert_equal "line 1\nline 2", "[u]line 1\nline 2[/u]".bbcode_to_md

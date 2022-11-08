@@ -28,12 +28,14 @@ module RubyBBCode
         :html_open => "\n", :html_close => "\n",
         :description => 'Unordered list',
         :example => '[ul][li]List item[/li][li]Another list item[/li][/ul].',
-        :only_allow => [ :li ]},
+        :only_allow => [ :li ],
+        :paragraphs => :allow},
       :ol => {
         :html_open => "\n", :html_close => "\n",
         :description => 'Ordered list',
         :example => '[ol][li]List item[/li][li]Another list item[/li][/ol].',
-        :only_allow => [ :li ]},
+        :only_allow => [ :li ],
+        :paragraphs => :allow},
       :li => {
         :html_open => {
           :ul => '  - ',
@@ -71,14 +73,16 @@ module RubyBBCode
         :example => '[quote]BBCode is great[/quote]',
         :allow_tag_param => true, :allow_tag_param_between => false,
         :tag_param => /(.*)/,
-        :tag_param_tokens => [{:token => :author, :prefix => '=', :postfix => ""}]},
+        :tag_param_tokens => [{:token => :author, :prefix => '=', :postfix => ""}],
+        :paragraphs => :allow},
       :size => {
         :html_open => '[size=%size%]', :html_close => '[/size]',
         :description => 'Change the size of the text',
         :example => '[size=32]This is 32px[/size]',
         :allow_tag_param => true, :allow_tag_param_between => false,
         :tag_param => /(\d*)/,
-        :tag_param_tokens => [{:token => :size}]},
+        :tag_param_tokens => [{:token => :size}],
+        :paragraphs => :allow},
       :color => {
         :html_open => '', :html_close => '',
         :description => 'Change the color of the text',
