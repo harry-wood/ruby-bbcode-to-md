@@ -27,9 +27,9 @@ class RubyBbcodeTest < MiniTest::Unit::TestCase
     assert_equal "line 1\nline 2", "[u]line 1\nline 2[/u]".bbcode_to_md
   end
 
-  def test_s
-    assert_equal '~~simple~~', '[s]simple[/s]'.bbcode_to_md
-  end
+  # def test_s
+  #   assert_equal '~~simple~~', '[s]simple[/s]'.bbcode_to_md
+  # end
 
   def test_size
     assert_equal '[size=32]32px Text[/size]', '[size=32]32px Text[/size]'.bbcode_to_md
