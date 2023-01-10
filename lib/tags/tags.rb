@@ -16,10 +16,10 @@ module RubyBBCode
         :html_open => '', :html_close => '',
         :description => 'Underline text',
         :example => 'This is [u]underlined[/u].'},
-      # :s => {
-      #   :html_open => '~~', :html_close => '~~',
-      #   :description => 'Strike-through text',
-      #   :example => 'This is <s>strike-through text</s>.'},
+      :s => {
+        :html_open => '<s>', :html_close => '</s>',
+        :description => 'Strike-through text',
+        :example => 'This is <s>strike-through text</s>.'},
       :center => {
         :html_open => '', :html_close => '',
         :description => 'Center a text',
@@ -68,7 +68,7 @@ module RubyBBCode
         :tag_param_tokens => [{:token => :href}]},
       :quote => {
         :first_html_open => "\n", :last_html_close => "\n",
-        :html_open => "[quote%author%]", :html_close => "[/quote]\n",
+        :html_open => "[quote%author%]\n", :html_close => "\n[/quote]",
         :description => 'Quote another person',
         :example => '[quote]BBCode is great[/quote]',
         :allow_tag_param => true, :allow_tag_param_between => false,

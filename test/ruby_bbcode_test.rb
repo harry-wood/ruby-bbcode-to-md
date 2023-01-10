@@ -27,9 +27,9 @@ class RubyBbcodeTest < MiniTest::Unit::TestCase
     assert_equal "line 1\nline 2", "[u]line 1\nline 2[/u]".bbcode_to_md
   end
 
-  # def test_s
-  #   assert_equal '~~simple~~', '[s]simple[/s]'.bbcode_to_md
-  # end
+  def test_s
+    assert_equal '<s>simple</s>', '[s]simple[/s]'.bbcode_to_md
+  end
 
   def test_size
     assert_equal '[size=32]32px Text[/size]', '[size=32]32px Text[/size]'.bbcode_to_md
@@ -64,13 +64,18 @@ class RubyBbcodeTest < MiniTest::Unit::TestCase
   end
 
   def test_quote
-    assert_equal "\n[quote]quoting[/quote]\n\n",  '[quote]quoting[/quote]'.bbcode_to_md
-    assert_equal "\n[quote=someone]quoting[/quote]\n\n", '[quote=someone]quoting[/quote]'.bbcode_to_md
+    assert_equal "\n[quote]\nquoting\n[/quote]\n",  '[quote]quoting[/quote]'.bbcode_to_md
+    assert_equal "\n[quote=someone]\nquoting\n[/quote]\n", '[quote=someone]quoting[/quote]'.bbcode_to_md
+    assert_equal "\n[quote=someone]\nquoting\n[/quote]\n suffix", '[quote=someone]quoting[/quote] suffix'.bbcode_to_md
+    assert_equal "prefix \n[quote=someone]\nquoting\n[/quote]\n suffix", 'prefix [quote=someone]quoting[/quote] suffix'.bbcode_to_md
+    assert_equal "prefix\n[quote=someone]\nquoting\n[/quote]\nsuffix", 'prefix[quote=someone]quoting[/quote]suffix'.bbcode_to_md
   end
 
   def test_nested_quotes
-    assert_equal "\n[quote=Kitten]\n[quote=creatiu]f1[/quote]\n\nf2[/quote]\n\n",
+    assert_equal "\n[quote=Kitten]\n\n[quote=creatiu]\nf1\n[/quote]\nf2\n[/quote]\n",
                   '[quote=Kitten][quote=creatiu]f1[/quote]f2[/quote]'.bbcode_to_md
+    assert_equal "prefix1\n[quote=Kitten]\nf0\n[quote=creatiu]\nf1\n[/quote]\nf2\n[/quote]\nsuffix",
+                  'prefix1[quote=Kitten]f0[quote=creatiu]f1[/quote]f2[/quote]suffix'.bbcode_to_md
   end
 
   def test_link
@@ -147,7 +152,7 @@ class RubyBbcodeTest < MiniTest::Unit::TestCase
   end
 
   def test_multiple_tag_test
-    assert_equal "**bold***italic*underline\n[quote]quote[/quote]\n\n[link](https://test.com)",
+    assert_equal "**bold***italic*underline\n[quote]\nquote\n[/quote]\n[link](https://test.com)",
                    "[b]bold[/b][i]italic[/i][u]underline[/u][quote]quote[/quote][url=https://test.com]link[/url]".bbcode_to_md
   end
 
