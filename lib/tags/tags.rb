@@ -21,11 +21,11 @@ module RubyBBCode
         :description => 'Strike-through text',
         :example => 'This is <s>strike-through text</s>.'},
       :code => {
-        :html_open => "\n```\n%between%", :html_close => "\n```\n",
+        :html_open => "\n```\n", :html_close => "\n```\n",
         :description => 'Code block',
         :example => '[code]code[/code].',
         :only_allow => [],
-        :require_between => true},
+        :plain_tag => true},
       :center => {
         :html_open => '', :html_close => '',
         :description => 'Center a text',

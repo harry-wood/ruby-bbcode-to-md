@@ -25,6 +25,7 @@ module RubyBBCode
 
         @ti.handle_unregistered_tags_as_text  # if the tag isn't in the @dictionary list, then treat it as text
         handle_closing_tags_that_are_multi_as_text_if_it_doesnt_match_the_latest_opener_tag_on_the_stack
+        handle_tags_that_are_plain_as_text_if_it_doesnt_match_the_latest_opener_tag_on_the_stack
 
         return if !valid_element?
 
@@ -91,6 +92,18 @@ module RubyBBCode
       if @ti.element_is_closing_tag?
         return if @bbtree.current_node[:definition].nil?
         if parent_tag != @ti[:tag].to_sym and @bbtree.current_node[:definition][:multi_tag]       # if opening tag doesn't match this closing tag... and if the opener was a multi_tag...
+          @ti[:is_tag] = false
+          @ti[:closing_tag] = false
+          @ti[:text] = @ti.tag_data[:complete_match]
+        end
+      end
+
+    end
+
+    def handle_tags_that_are_plain_as_text_if_it_doesnt_match_the_latest_opener_tag_on_the_stack
+      if @ti.element_is_tag?
+        return if @bbtree.current_node[:definition].nil?
+        if parent_tag != @ti[:tag].to_sym and @bbtree.current_node[:definition][:plain_tag]
           @ti[:is_tag] = false
           @ti[:closing_tag] = false
           @ti[:text] = @ti.tag_data[:complete_match]
