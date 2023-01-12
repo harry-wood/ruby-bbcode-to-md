@@ -17,7 +17,7 @@ module RubyBBCode
         :description => 'Underline text',
         :example => 'This is [u]underlined[/u].'},
       :s => {
-        :html_open => '~~', :html_close => '~~',
+        :html_open => '<s>', :html_close => '</s>',
         :description => 'Strike-through text',
         :example => 'This is <s>strike-through text</s>.'},
       :code => {

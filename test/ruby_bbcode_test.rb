@@ -28,7 +28,7 @@ class RubyBbcodeTest < MiniTest::Unit::TestCase
   end
 
   def test_s
-    assert_equal '~~simple~~', '[s]simple[/s]'.bbcode_to_md
+    assert_equal '<s>simple</s>', '[s]simple[/s]'.bbcode_to_md
   end
 
   def test_size
@@ -67,6 +67,8 @@ class RubyBbcodeTest < MiniTest::Unit::TestCase
     assert_equal "\n```\ncode\n```\n", '[code]code[/code]'.bbcode_to_md
     assert_equal "\n```\n<tag k='key' v='value'/>\n```\n", "[code]<tag k='key' v='value'/>[/code]".bbcode_to_md(false)
     assert_equal "\n```\n[b]test[/b]\n```\n", "[code][b]test[/b][/code]".bbcode_to_md
+    assert_equal "\n```\n[b]test\n```\n", "[code][b]test[/code]".bbcode_to_md
+    assert_equal "\n```\n[b]test\n<i>\n```\n", "[code][b]test\n<i>[/code]".bbcode_to_md(false)
   end
 
   def test_quote
