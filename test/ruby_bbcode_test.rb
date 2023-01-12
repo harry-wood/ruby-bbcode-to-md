@@ -69,6 +69,7 @@ class RubyBbcodeTest < MiniTest::Unit::TestCase
     assert_equal "\n[quote=someone]\nquoting\n[/quote]\n suffix", '[quote=someone]quoting[/quote] suffix'.bbcode_to_md
     assert_equal "prefix \n[quote=someone]\nquoting\n[/quote]\n suffix", 'prefix [quote=someone]quoting[/quote] suffix'.bbcode_to_md
     assert_equal "prefix\n[quote=someone]\nquoting\n[/quote]\nsuffix", 'prefix[quote=someone]quoting[/quote]suffix'.bbcode_to_md
+    assert_equal "\n[quote=user]\nquote line 1\nquote line 2\nquote line 3\n[/quote]\n", "[quote=user]quote line 1\nquote line 2\nquote line 3[/quote]".bbcode_to_md
   end
 
   def test_nested_quotes
