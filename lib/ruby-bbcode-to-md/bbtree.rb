@@ -17,6 +17,7 @@ module RubyBBCode
       @bbtree = hash
       @current_node = TagNode.new(@bbtree)
       @tags_list = []
+      @nodes_list = []
       @dictionary = dictionary
     end
 
@@ -55,6 +56,7 @@ module RubyBBCode
     def escalate_bbtree(element)
       element[:parent_tag] = parent_tag
       @tags_list.push element[:tag]
+      @nodes_list.push @current_node
       @current_node = TagNode.new(element)
     end
 
@@ -63,12 +65,7 @@ module RubyBBCode
       @tags_list.pop     # remove latest tag in tags_list since it's closed now...
       # The parsed data manifests in @bbtree.current_node.children << TagNode.new(element) which I think is more confusing than needed
 
-      if within_open_tag?
-        # Set the current node to be the node we've just parsed over which is infact within another node??...
-        @current_node = TagNode.new(self.nodes.last)
-      else # If we're still at the root of the BBTree or have returned back to the root via encountring closing tags...
-        @current_node = TagNode.new({:nodes => self.nodes})
-      end
+      @current_node = @nodes_list.pop
 
       # OKOKOK!
       # Since @bbtree = @current_node, if we ever set @current_node to something, we're actually changing @bbtree...
