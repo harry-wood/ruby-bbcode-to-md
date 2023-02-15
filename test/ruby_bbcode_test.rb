@@ -82,9 +82,11 @@ class RubyBbcodeTest < MiniTest::Unit::TestCase
 
   def test_nested_quotes
     assert_equal "\n[quote=Kitten]\n\n[quote=creatiu]\nf1\n[/quote]\nf2\n[/quote]\n",
-                  '[quote=Kitten][quote=creatiu]f1[/quote]f2[/quote]'.bbcode_to_md
+                  '[quote=Kitten][quote=creatiu]f1[/quote]f2[/quote]'.bbcode_to_md(false)
     assert_equal "prefix1\n[quote=Kitten]\nf0\n[quote=creatiu]\nf1\n[/quote]\nf2\n[/quote]\nsuffix",
-                  'prefix1[quote=Kitten]f0[quote=creatiu]f1[/quote]f2[/quote]suffix'.bbcode_to_md
+                  'prefix1[quote=Kitten]f0[quote=creatiu]f1[/quote]f2[/quote]suffix'.bbcode_to_md(false)
+    assert_equal "prefix1\n[quote=Kitten]\nf0\n[quote=creatiu]\nf1\n[quote=Kitten]\nf3\n[/quote]\nf4\n[/quote]\nf2\n[/quote]\nsuffix",
+                  'prefix1[quote=Kitten]f0[quote=creatiu]f1[quote=Kitten]f3[/quote]f4[/quote]f2[/quote]suffix'.bbcode_to_md(false)
   end
 
   def test_link
