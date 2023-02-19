@@ -79,7 +79,7 @@ class RubyBbcodeTest < MiniTest::Unit::TestCase
   def test_nested_quotes
     assert_equal "\n[quote=Kitten]\n\n[quote=creatiu]\nf1\n[/quote]\nf2\n[/quote]\n",
                   '[quote=Kitten][quote=creatiu]f1[/quote]f2[/quote]'.bbcode_to_md
-    assert_equal "A\n[quote]\nB\n[quote]\nC\n[quote]\nD\n[/quote]\n\n[/quote]\nEF\n[/quote]\nG", # Triple nesting conversion is wrong
+    assert_equal "A\n[quote]\nB\n[quote]\nC\n[quote]\nD\n[/quote]\nE\n[/quote]\nF\n[/quote]\nG",
                  'A[quote]B[quote]C[quote]D[/quote]E[/quote]F[/quote]G'.bbcode_to_md
   end
 
