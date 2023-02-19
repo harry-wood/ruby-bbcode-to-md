@@ -74,11 +74,14 @@ class RubyBbcodeTest < MiniTest::Unit::TestCase
   def test_quote
     assert_equal "\n[quote]quoting[/quote]\n\n",  '[quote]quoting[/quote]'.bbcode_to_md
     assert_equal "\n[quote=someone]quoting[/quote]\n\n", '[quote=someone]quoting[/quote]'.bbcode_to_md
+    assert_equal "with prefix\n[quote]abc[/quote]\n\n", 'with prefix[quote]abc[/quote]'.bbcode_to_md
   end
 
   def test_nested_quotes
-    assert_equal "\n[quote=Kitten]\n[quote=creatiu]f1[/quote]\n\nf2[/quote]\n\n",
+    assert_equal "\n[quote=Kitten]\n[quote=creatiu]f1[/quote]\n\nf2[/quote]\n\n", # Not correct for discourse. Needs more newlines
                   '[quote=Kitten][quote=creatiu]f1[/quote]f2[/quote]'.bbcode_to_md
+    assert_equal "A\n[quote]B\n[quote]C\n[quote]D[/quote]\n\n[/quote]\n\nEF[/quote]\n\nG", # Triple nesting conversion is wrong
+                 'A[quote]B[quote]C[quote]D[/quote]E[/quote]F[/quote]G'.bbcode_to_md
   end
 
   def test_link
