@@ -43,6 +43,14 @@ class RubyBbcodeTest < MiniTest::Unit::TestCase
   def test_center
     assert_equal 'centered', '[center]centered[/center]'.bbcode_to_md
   end
+  
+  def test_code
+    assert_equal "\n```\ncode\n```\n", '[code]code[/code]'.bbcode_to_md
+    assert_equal "\n```\ncode\n```\n", '[code=javascript]code[/code]'.bbcode_to_md
+    assert_equal "\n```\nSome [b]bbcode[/b] :-)\n```\n", '[code]Some [b]bbcode[/b] :-)[/code]'.bbcode_to_md
+    assert_equal "\n```\nSome &lt;b&gt;html&lt;/b&gt;\n```\n", '[code]Some <b>html</b>[/code]'.bbcode_to_md
+    assert_equal "\n```\nSome <b>html</b>\n```\n", '[code]Some <b>html</b>[/code]'.bbcode_to_md(false)
+  end
 
   def test_ordered_list
     assert_equal "\n  1. item 1\n  1. item 2\n\n", '[ol][li]item 1[/li][li]item 2[/li][/ol]'.bbcode_to_md
