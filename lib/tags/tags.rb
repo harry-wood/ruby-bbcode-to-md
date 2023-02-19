@@ -72,8 +72,7 @@ module RubyBBCode
         :tag_param => /(.*)/,
         :tag_param_tokens => [{:token => :href}]},
       :quote => {
-        :first_html_open => "\n", :last_html_close => "\n",
-        :html_open => "[quote%author%]", :html_close => "[/quote]\n",
+        :html_open => "\n[quote%author%]\n", :html_close => "\n[/quote]\n",
         :description => 'Quote another person',
         :example => '[quote]BBCode is great[/quote]',
         :allow_tag_param => true, :allow_tag_param_between => false,
